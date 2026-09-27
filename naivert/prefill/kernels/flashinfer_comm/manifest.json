@@ -1,0 +1,27 @@
+{
+  "repository": "https://github.com/flashinfer-ai/flashinfer",
+  "version": "0.6.12",
+  "identity": "installed wheel source pinned by SHA256",
+  "license": "Apache-2.0 (LICENSE)",
+  "device_sources_unchanged": true,
+  "patches": "generator.patch: extract source generator; redirect paths only",
+  "upstream_jit_comm_sha256": "398b9b3f12869282112f76afb301b911601dec92e44502f1265832e8351ed08a",
+  "upstream_sha256": {
+    "LICENSE": "cb67c224f503e0a063908950b12f89a7280c6e527dcffac972aa114e4bf3c5de",
+    "csrc/mixed_comm.cu": "7ec48d4c6c92e034b4cfdce6000dfc198bb9a93fcec1600a36155885ff8ec739",
+    "csrc/mixed_comm_kernel_inst.jinja": "bb6fe548e35b5c4148fda5107bee919124d41110d95da8474b74176a06d3db4b",
+    "csrc/tvm_ffi_utils.h": "4e6cb7b6eab3f19365717412f089268679c54da92c1633253325f09efbded7f4",
+    "include/flashinfer/comm/mixed_comm.cuh": "ace61fb3289489ea40cdbb4452d9a6f68c0fdd0fdec22940b87b96641c6c6f86",
+    "include/flashinfer/comm/mixed_comm_decl.cuh": "3d48d8f305cc51e7be551fd191ffa43b9708d0f4d90997feb2fe8b2b9bcfc559"
+  },
+  "files": {
+    "LICENSE": "cb67c224f503e0a063908950b12f89a7280c6e527dcffac972aa114e4bf3c5de",
+    "csrc/mixed_comm.cu": "7ec48d4c6c92e034b4cfdce6000dfc198bb9a93fcec1600a36155885ff8ec739",
+    "csrc/mixed_comm_kernel_inst.jinja": "bb6fe548e35b5c4148fda5107bee919124d41110d95da8474b74176a06d3db4b",
+    "csrc/tvm_ffi_utils.h": "4e6cb7b6eab3f19365717412f089268679c54da92c1633253325f09efbded7f4",
+    "include/flashinfer/comm/mixed_comm.cuh": "ace61fb3289489ea40cdbb4452d9a6f68c0fdd0fdec22940b87b96641c6c6f86",
+    "include/flashinfer/comm/mixed_comm_decl.cuh": "3d48d8f305cc51e7be551fd191ffa43b9708d0f4d90997feb2fe8b2b9bcfc559",
+    "generate.py": "43f671f05ea7b97e1ba120a4aa315eedc79da96bd1b199bd08841f7650abff16",
+    "generator.patch": "39c7253dd2ee2719f18aaa5ca0af61db4df28db066114687399f51299cb3bd84"
+  }
+}

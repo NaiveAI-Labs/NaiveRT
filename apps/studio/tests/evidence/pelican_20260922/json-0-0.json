@@ -1,0 +1,89 @@
+{
+  "endpoint": "http://127.0.0.1:18090",
+  "request": {
+    "model": "naive-n0.5",
+    "max_tokens": 131072,
+    "seed": 42,
+    "thinking": {
+      "type": "disabled",
+      "budget_tokens": 16384
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": "Generate an SVG of a pelican riding a bicycle. Reply with only the complete SVG markup, no explanation."
+      }
+    ],
+    "stream": false
+  },
+  "usage": {
+    "input_tokens": 58,
+    "output_tokens": 4872,
+    "cache_read_input_tokens": 0,
+    "cache_creation_input_tokens": 58
+  },
+  "timings": {
+    "prompt_n": 58,
+    "prompt_ms": 57.802464,
+    "prompt_per_second": 1003.4174321703656,
+    "predicted_n": 4872,
+    "predicted_ms": 2868.6779038980603,
+    "predicted_per_second": 1698.3433355762093,
+    "capture_ms": 74.4137903675437,
+    "decode_tok_s_device": 1697.0749934305784,
+    "n_prompt_tokens_cache": 0,
+    "prefill_path": "native",
+    "initialize_ms": 8.524539,
+    "prefill_estimate": {
+      "replay_ms": 25.6,
+      "native_ms": 62.1,
+      "suffix_tokens": 58,
+      "chunks": 1
+    },
+    "prefill_phases": {
+      "executor_ms": 54.07,
+      "chunks": 1,
+      "pos_fill_ms": 0.21,
+      "tail_ms": 2.72,
+      "tail_tokens": 1,
+      "sampling_ms": 0.9,
+      "anchor_ms": 0.56,
+      "ingest_ms": 0.03,
+      "init_ms": 8.29,
+      "launch_ms": 0.21
+    },
+    "device_chain": true,
+    "chain_abandoned_n": 0,
+    "chain_canceled": false,
+    "device_steps": 832,
+    "reconcile_error": null,
+    "device_stop_bound": 4871,
+    "segments": {
+      "answer": {
+        "tokens": 4871,
+        "rounds": 831,
+        "tokens_per_round": 5.861612515042118,
+        "device_ms": 2865.518624,
+        "device_tok_s": 1699.8668091713648
+      },
+      "total": {
+        "tokens": 4871,
+        "rounds": 831,
+        "tokens_per_round": 5.861612515042118,
+        "device_ms": 2865.518624,
+        "device_tok_s": 1699.8668091713648
+      }
+    }
+  },
+  "client": {
+    "headers_ms": 3268.29,
+    "first_content_ms": null,
+    "last_content_ms": null,
+    "elapsed_ms": 3481.750666,
+    "request_tok_s": 1399.2960632063823,
+    "delta_events": 0
+  },
+  "stop_reason": "end_turn",
+  "response_sha256": "46573aa762a62df87d913d38c5697e6b768dcbddc94108e23e085f6cd369d01e",
+  "response_chars": 8902
+}

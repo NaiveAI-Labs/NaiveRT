@@ -1,0 +1,174 @@
+--- a/jit/comm.py
++++ b/generate.py
+@@ -14,39 +14,20 @@
+ limitations under the License.
+ """
+ 
+-from .core import JitSpec, gen_jit_spec, current_compilation_context
+-from .utils import write_if_different
+-from . import env as jit_env
+ import os
+-import pathlib
+-import jinja2
+ from itertools import product
+ from typing import Dict, Tuple, List, Any
++import jinja2
+ 
+ 
+-def gen_comm_alltoall_module() -> JitSpec:
+-    return gen_jit_spec(
+-        "comm",
+-        [
+-            jit_env.FLASHINFER_CSRC_DIR / "trtllm_alltoall.cu",
+-            jit_env.FLASHINFER_CSRC_DIR / "trtllm_alltoall_prepare.cu",
+-        ],
+-    )
++def write_if_different(path, text):
++    if not path.exists() or path.read_text() != text:
++        path.write_text(text)
+ 
+ 
+-def gen_trtllm_mnnvl_comm_module() -> JitSpec:
+-    return gen_jit_spec(
+-        "trtllm_mnnvl_comm",
+-        [
+-            jit_env.FLASHINFER_CSRC_DIR / "trtllm_mnnvl_allreduce.cu",
+-        ],
+-    )
+-
+-
+-def gen_mixed_comm_module() -> JitSpec:
+-    gen_directory = jit_env.FLASHINFER_GEN_SRC_DIR / "gen_mixed_comm"
++def generate(source, gen_directory):
+     os.makedirs(gen_directory, exist_ok=True)
+-    source_paths = [jit_env.FLASHINFER_CSRC_DIR / "mixed_comm.cu"]
++    source_paths = [(source / "csrc") / "mixed_comm.cu"]
+ 
+     def is_valid_op(
+         op: str,
+@@ -85,7 +66,7 @@
+             return local_dp_size % block_size_y == 0
+         return (local_tp_size * local_dp_size) % block_size_y == 0
+ 
+-    with open(jit_env.FLASHINFER_CSRC_DIR / "mixed_comm_kernel_inst.jinja") as f:
++    with open((source / "csrc") / "mixed_comm_kernel_inst.jinja") as f:
+         kernel_inst_templ = jinja2.Template(f.read())
+     kernel_dict = {
+         "allreduce_kernel": "ALLREDUCE",
+@@ -157,115 +138,4 @@
+         source = kernel_inst_templ.render(instantiations=instantiations)
+         write_if_different(dest_path, source)
+ 
+-    import nvidia.nvshmem
+-
+-    path_base = pathlib.Path(nvidia.nvshmem.__path__[0])
+-
+-    nvcc_flags = current_compilation_context.get_nvcc_flags_list(
+-        supported_major_versions=[9, 10]
+-    ) + ["-rdc=true"]
+-    ldflags = [f"-L{str(path_base / 'lib')}"] + ["-lnvshmem_device"]
+-
+-    return gen_jit_spec(
+-        "mixed_comm",
+-        source_paths,
+-        extra_include_paths=[str(path_base / "include")],
+-        extra_cuda_cflags=nvcc_flags,
+-        extra_ldflags=ldflags,
+-        needs_device_linking=True,
+-    )
+-
+-
+-def gen_trtllm_comm_module() -> JitSpec:
+-    nvcc_flags = current_compilation_context.get_nvcc_flags_list(
+-        supported_major_versions=[9, 10]
+-    )
+-    return gen_jit_spec(
+-        "trtllm_comm",
+-        [
+-            jit_env.FLASHINFER_CSRC_DIR / "trtllm_allreduce.cu",
+-            jit_env.FLASHINFER_CSRC_DIR / "trtllm_allreduce_fusion.cu",
+-            jit_env.FLASHINFER_CSRC_DIR / "trtllm_moe_allreduce_fusion.cu",
+-        ],
+-        extra_cuda_cflags=nvcc_flags,
+-    )
+-
+-
+-def gen_vllm_comm_module() -> JitSpec:
+-    return gen_jit_spec(
+-        "vllm_comm",
+-        [
+-            jit_env.FLASHINFER_CSRC_DIR / "vllm_custom_all_reduce.cu",
+-        ],
+-    )
+-
+-
+-def gen_moe_alltoall_module() -> JitSpec:
+-    return gen_jit_spec(
+-        "mnnvl_moe_alltoall",
+-        [
+-            jit_env.FLASHINFER_CSRC_DIR / "trtllm_moe_alltoall.cu",
+-            jit_env.FLASHINFER_CSRC_DIR
+-            / "nv_internal"
+-            / "tensorrt_llm"
+-            / "kernels"
+-            / "communicationKernels"
+-            / "moeAlltoAllKernels.cu",
+-            jit_env.FLASHINFER_CSRC_DIR
+-            / "nv_internal"
+-            / "cpp"
+-            / "common"
+-            / "envUtils.cpp",
+-            jit_env.FLASHINFER_CSRC_DIR
+-            / "nv_internal"
+-            / "cpp"
+-            / "common"
+-            / "tllmException.cpp",
+-            jit_env.FLASHINFER_CSRC_DIR
+-            / "nv_internal"
+-            / "cpp"
+-            / "common"
+-            / "logger.cpp",
+-            jit_env.FLASHINFER_CSRC_DIR
+-            / "nv_internal"
+-            / "cpp"
+-            / "common"
+-            / "stringUtils.cpp",
+-        ],
+-        extra_include_paths=[
+-            str(jit_env.FLASHINFER_CSRC_DIR / "nv_internal"),
+-            str(jit_env.FLASHINFER_CSRC_DIR / "nv_internal" / "include"),
+-        ],
+-    )
+-
+-
+-def gen_dcp_alltoall_module() -> JitSpec:
+-    nvcc_flags = current_compilation_context.get_nvcc_flags_list(
+-        supported_major_versions=[9, 10, 11, 12]
+-    )
+-    return gen_jit_spec(
+-        "dcp_alltoall",
+-        [
+-            jit_env.FLASHINFER_CSRC_DIR / "trtllm_dcp_alltoall.cu",
+-            jit_env.FLASHINFER_CSRC_DIR
+-            / "nv_internal"
+-            / "tensorrt_llm"
+-            / "kernels"
+-            / "helixAllToAll.cu",
+-            jit_env.FLASHINFER_CSRC_DIR
+-            / "nv_internal"
+-            / "cpp"
+-            / "common"
+-            / "envUtils.cpp",
+-            jit_env.FLASHINFER_CSRC_DIR
+-            / "nv_internal"
+-            / "cpp"
+-            / "common"
+-            / "tllmException.cpp",
+-        ],
+-        extra_include_paths=[
+-            str(jit_env.FLASHINFER_CSRC_DIR / "nv_internal"),
+-            str(jit_env.FLASHINFER_CSRC_DIR / "nv_internal" / "include"),
+-        ],
+-        extra_cuda_cflags=nvcc_flags,
+-    )
++    return source_paths

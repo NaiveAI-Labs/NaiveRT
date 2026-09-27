@@ -1,0 +1,23 @@
+{
+  "repository": "https://github.com/flashinfer-ai/flashinfer",
+  "version": "0.6.12",
+  "identity": "installed wheel source pinned by SHA256",
+  "license": "Apache-2.0 (LICENSE)",
+  "device_sources_unchanged": true,
+  "patches": [],
+  "upstream_jit_rope_sha256": "76ca1f9f51d1b6cff91a77b033c53072f9fab7b1f3c82a64680466cdbbf2fa62",
+  "files": {
+    "LICENSE": "cb67c224f503e0a063908950b12f89a7280c6e527dcffac972aa114e4bf3c5de",
+    "csrc/flashinfer_rope_binding.cu": "0f7ca00d9d8ecc336c9ec5d58ec9cf8bd5f8ac64410a73d73b07649dcf65c97e",
+    "csrc/rope.cu": "20d0f4c537d6524ff39d9a65cca4868b17ff99d6cb64ee6f04c51b2c13f249ad",
+    "csrc/tvm_ffi_utils.h": "4e6cb7b6eab3f19365717412f089268679c54da92c1633253325f09efbded7f4",
+    "include/flashinfer/exception.h": "83126766f5b3ef24586eca68bcd3ebe45b1f8b1c5952fb55940421618175f271",
+    "include/flashinfer/fastdiv.cuh": "5d79e2d63bd133f9da4fd3236342999cb585812eb07326ce55775d353ae62832",
+    "include/flashinfer/layout.cuh": "f000e64b9c718b0659fff1acf3c3fa0c2cdf5c75862cede645b16014bfa7aa2b",
+    "include/flashinfer/math.cuh": "d8a5bc796dfe4f3b3593163ab0a078c63554d73b1c05886983eec8ae36640051",
+    "include/flashinfer/page.cuh": "6ad25f50ed08ea74495d8a8d172baf57266e53ce0d42b14dc9e979c1073c0468",
+    "include/flashinfer/pos_enc.cuh": "6a94df7647512f9474198ee99a04bf84b7dad9c65be1d10d8d20c9c9f9cf2abf",
+    "include/flashinfer/utils.cuh": "3d91b642002f143d74d840861b908b985e142392ebf331a67159461162c99507",
+    "include/flashinfer/vec_dtypes.cuh": "5b6c312a3736be4bdd2991c80038a3e3e8040ea8a302d3fb52332a50e3bac7a0"
+  }
+}

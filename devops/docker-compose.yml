@@ -1,0 +1,46 @@
+# NaiveRT: one server per eight-GPU node (one active sequence, requests queue up to NAIVERT_QUEUE_DEPTH).
+services:
+  naivert:
+    image: ${NAIVERT_IMAGE:-naivert:latest}   # set NAIVERT_IMAGE to run the published image without building
+    build:
+      context: ..
+      dockerfile: devops/Dockerfile
+    ipc: host
+    ulimits:
+      memlock: -1
+      stack: 67108864
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 8
+              capabilities: [gpu]
+    environment:
+      NAIVERT_MODEL: ${NAIVERT_MODEL:-naive-n0.5}
+      NAIVERT_TARGET_CHECKPOINT: "${NAIVERT_TARGET_CHECKPOINT:-}"
+      NAIVERT_DRAFT_CHECKPOINT: "${NAIVERT_DRAFT_CHECKPOINT:-}"
+      NAIVERT_PORT: "8080"
+      NAIVERT_CAPACITY: "${NAIVERT_CAPACITY:-1048576}"
+      NAIVERT_OUTPUT_CAPACITY: "${NAIVERT_OUTPUT_CAPACITY:-524288}"
+      NAIVERT_MAX_DECODE_TOKENS: "${NAIVERT_MAX_DECODE_TOKENS:-524288}"
+      NAIVERT_PREFILL_WARM_CHUNKS: "${NAIVERT_PREFILL_WARM_CHUNKS:-3}"
+      NAIVERT_QUEUE_DEPTH: "${NAIVERT_QUEUE_DEPTH:-8}"
+      NAIVERT_EXTRA_ARGS: "${NAIVERT_EXTRA_ARGS:-}"
+    volumes:
+      - ${NAIVERT_HOST_MODEL_DIR:-/local_models}:/local_models:ro          # target checkpoints, short names from naivert/models/registry.py
+      - ${NAIVERT_HOST_DRAFT_DIR:-/local_models/drafts}:/local_models/drafts:ro   # draft checkpoints
+      - naivert-jit-cache:/root/.cache          # FlashInfer / DeepGEMM / torch extension caches survive restarts
+      - naivert-ext-build:/opt/naivert/tests/build
+    ports:
+      - "${NAIVERT_PORT:-8080}:8080"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8080/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 900s
+      retries: 5
+    restart: unless-stopped
+volumes:
+  naivert-jit-cache:
+  naivert-ext-build:

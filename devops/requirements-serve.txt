@@ -1,0 +1,20 @@
+# Serving-side Python packages pinned to the versions validated on the eight-GPU Blackwell (SM103a) hosts (2026-09-20).
+# torch 2.11.0+cu130, flashinfer-python 0.6.12, sglang-kernel 0.4.4, sgl-deep-gemm 0.1.4,
+# nvidia-cutlass-dsl 4.5.2, deep_ep 1.2.1 and triton 3.6.0 come from the base image
+# (lmsysorg/sglang:v0.5.15.post1); devops/warm_kernels.py --check-env verifies them.
+fastapi==0.139.0
+uvicorn==0.51.0
+starlette==1.3.1
+pydantic==2.13.4
+safetensors==0.8.0
+transformers==5.12.1
+tokenizers==0.22.2
+httpx==0.28.1
+anthropic==0.116.0
+numpy==2.3.5
+ninja==1.13.0
+orjson==3.11.9
+# Native prefill kernel pins (naivert/kernels/naive_n0p5/prefill.py PINNED_DISTRIBUTIONS); the base image lacks ttfs.
+ttfs==0.6.3
+# The radix top-k's NVRTC compile takes CCCL from the pip nvidia namespace (nvidia/cu13/include/cccl), not from CUDA_HOME.
+nvidia-cuda-cccl==13.0.85

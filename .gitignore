@@ -1,0 +1,11 @@
+._*
+.DS_Store
+__pycache__/
+*.pyc
+*.bak_*
+*_queue.log
+v2_*.json
+tests/build/
+tests/results/
+*.permfix_old/
+tests/results/refactor/

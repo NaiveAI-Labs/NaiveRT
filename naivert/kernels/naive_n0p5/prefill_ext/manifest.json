@@ -1,0 +1,1306 @@
+{
+  "banned_import_roots": [
+    "sglang",
+    "naive_ops_lib",
+    "deep_ep"
+  ],
+  "files": [
+    {
+      "license": "naivert",
+      "mode": "authored",
+      "path": "__init__.py",
+      "sha256": "c4376fc8d6d9c6bf3bee2ff9831dafc0a5510f2ee0dbbe62f0482d8989615812"
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "verbatim",
+      "path": "fa4_cute/AUTHORS",
+      "sha256": "82b4aba3841946660c3d8be4b565b94477af318dd185368cf1a76aa40d7d84a5",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/AUTHORS",
+      "source_sha256": "82b4aba3841946660c3d8be4b565b94477af318dd185368cf1a76aa40d7d84a5"
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "verbatim",
+      "path": "fa4_cute/LICENSE",
+      "sha256": "8c9ccb96c065e706135b6cbad279b721da6156e51f3a5f27c6b3329af9416d73",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/LICENSE",
+      "source_sha256": "8c9ccb96c065e706135b6cbad279b721da6156e51f3a5f27c6b3329af9416d73"
+    },
+    {
+      "license": "Apache-2.0 (fa4_cute/SGLANG_LICENSE)",
+      "mode": "verbatim",
+      "path": "fa4_cute/SGLANG_LICENSE",
+      "sha256": "1495e1e757ef4d0925a2350563cf5754bb23c51701a8ec4fb3c5cdcbedae6747",
+      "source": "sglang/LICENSE",
+      "source_sha256": "1495e1e757ef4d0925a2350563cf5754bb23c51701a8ec4fb3c5cdcbedae6747"
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "verbatim",
+      "path": "fa4_cute/__init__.py",
+      "sha256": "50713012c3a5e8045f368672342aea6eeeb3b3ce0968cb5639b1f158b9499487",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/__init__.py",
+      "source_sha256": "50713012c3a5e8045f368672342aea6eeeb3b3ce0968cb5639b1f158b9499487"
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "verbatim",
+      "path": "fa4_cute/ampere_helpers.py",
+      "sha256": "0fb11626d3d68849220d251a5ee5fa1790e599cdbf0f62817e6b4e2b2f05400f",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/ampere_helpers.py",
+      "source_sha256": "0fb11626d3d68849220d251a5ee5fa1790e599cdbf0f62817e6b4e2b2f05400f"
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "rewritten",
+      "path": "fa4_cute/blackwell_helpers.py",
+      "sha256": "2b696043ca09275fc9c1f8b0ee15566d513e13a67899057b916a38713d4ebbac",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/blackwell_helpers.py",
+      "source_sha256": "e0d3bb55515aafe0fd3883d0452be39ac562e23a366168eabea03b2a63984331",
+      "substitutions": [
+        {
+          "count": 1,
+          "new": "naivert.kernels.naive_n0p5.prefill_ext.fa4_cute",
+          "old": "sglang.jit_kernel.flash_attn.cute",
+          "why": "the copied package's own import path"
+        }
+      ]
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "rewritten",
+      "path": "fa4_cute/block_info.py",
+      "sha256": "c9d27198e45e6ca26d8f93ca01ab94c2ea816d8fa35e153b7016fd66f2436dde",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/block_info.py",
+      "source_sha256": "f6769af4d96173e836ce934573083cb985e35f54371c82f5d69f75f77cd229e9",
+      "substitutions": [
+        {
+          "count": 1,
+          "new": "naivert.kernels.naive_n0p5.prefill_ext.fa4_cute",
+          "old": "sglang.jit_kernel.flash_attn.cute",
+          "why": "the copied package's own import path"
+        }
+      ]
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "rewritten",
+      "path": "fa4_cute/block_sparse_utils.py",
+      "sha256": "f366a3253e1ef8f211c56582f40f4fbb44cfd141c22412226a5f80f072475b55",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/block_sparse_utils.py",
+      "source_sha256": "1da61522410f698b5e99018674a4a2661aebe8455cbac19e2fe5b1a8bc0d1bbd",
+      "substitutions": [
+        {
+          "count": 4,
+          "new": "naivert.kernels.naive_n0p5.prefill_ext.fa4_cute",
+          "old": "sglang.jit_kernel.flash_attn.cute",
+          "why": "the copied package's own import path"
+        }
+      ]
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "rewritten",
+      "path": "fa4_cute/block_sparsity.py",
+      "sha256": "de41663e45e5d1baa409b4cf7245cd5920fd07044d908b910b5380f32d0a8387",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/block_sparsity.py",
+      "source_sha256": "5b0728847881bba8e76b01dfed11e6c78d5d627f17fc6c7585ffd8a604fc54a9",
+      "substitutions": [
+        {
+          "count": 1,
+          "new": "naivert.kernels.naive_n0p5.prefill_ext.fa4_cute",
+          "old": "sglang.jit_kernel.flash_attn.cute",
+          "why": "the copied package's own import path"
+        }
+      ]
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "rewritten",
+      "path": "fa4_cute/cache_utils.py",
+      "sha256": "c4ee339149234281da5aaf5ee0dab22e60d59086ccd9c52484331568e56ae528",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/cache_utils.py",
+      "source_sha256": "f55734bfea108b1d57ddee4c6f6cb1dff1255895986f51a1fba10c2d487424f6",
+      "substitutions": [
+        {
+          "count": 1,
+          "new": "naivert.kernels.naive_n0p5.prefill_ext.fa4_cute",
+          "old": "sglang.jit_kernel.flash_attn.cute",
+          "why": "the copied package's own import path"
+        }
+      ]
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "verbatim",
+      "path": "fa4_cute/copy_utils.py",
+      "sha256": "43ae6db77b9e48280ba7b6e7413ed24929430b8a53015bc5ea9dffad57d1e9ad",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/copy_utils.py",
+      "source_sha256": "43ae6db77b9e48280ba7b6e7413ed24929430b8a53015bc5ea9dffad57d1e9ad"
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "verbatim",
+      "path": "fa4_cute/cu_blocks_kernels.py",
+      "sha256": "31a4b3dd15457c0fda258931544bed4ae859c71de2775bc9679ebd544aeca388",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/cu_blocks_kernels.py",
+      "source_sha256": "31a4b3dd15457c0fda258931544bed4ae859c71de2775bc9679ebd544aeca388"
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "verbatim",
+      "path": "fa4_cute/cute_dsl_ptxas.py",
+      "sha256": "acc3f18e41bca5555505dc79129e45eae6a3a5510d0b9e93fc1614bdad242776",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/cute_dsl_ptxas.py",
+      "source_sha256": "acc3f18e41bca5555505dc79129e45eae6a3a5510d0b9e93fc1614bdad242776"
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "verbatim",
+      "path": "fa4_cute/cute_dsl_utils.py",
+      "sha256": "03520beefd65d44c5bb1d3420e18664f0202b3c7926ea9d5dd8c97a983ef2583",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/cute_dsl_utils.py",
+      "source_sha256": "03520beefd65d44c5bb1d3420e18664f0202b3c7926ea9d5dd8c97a983ef2583"
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "verbatim",
+      "path": "fa4_cute/fa_logging.py",
+      "sha256": "bc71edfa4b1cb7af64b78def09e790ff4c6fe64ab4fcf8e3d9699f44e8d3c0a0",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/fa_logging.py",
+      "source_sha256": "bc71edfa4b1cb7af64b78def09e790ff4c6fe64ab4fcf8e3d9699f44e8d3c0a0"
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "verbatim",
+      "path": "fa4_cute/fast_math.py",
+      "sha256": "7e5f822bf4d0ba36967558f3ae9a1408b410cb726c31222cd61703569d1be738",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/fast_math.py",
+      "source_sha256": "7e5f822bf4d0ba36967558f3ae9a1408b410cb726c31222cd61703569d1be738"
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "rewritten",
+      "path": "fa4_cute/flash_fwd.py",
+      "sha256": "7651a19796213a3961ee63fceba857086798b80c8172f03615d3a767b90fa0f6",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/flash_fwd.py",
+      "source_sha256": "0665465a679fbf617fc342e4a5534288ac5f18b38a6a843b20e863856d67e853",
+      "substitutions": [
+        {
+          "count": 13,
+          "new": "naivert.kernels.naive_n0p5.prefill_ext.fa4_cute",
+          "old": "sglang.jit_kernel.flash_attn.cute",
+          "why": "the copied package's own import path"
+        }
+      ]
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "rewritten",
+      "path": "fa4_cute/flash_fwd_combine.py",
+      "sha256": "645ef1940df4d005a1996560c2b598c2601eca956543c0fe9b79c3302a009358",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/flash_fwd_combine.py",
+      "source_sha256": "bdeff49f36f60233365abcf57173fa163763ef9ee0e876d8b0f320a700998e60",
+      "substitutions": [
+        {
+          "count": 3,
+          "new": "naivert.kernels.naive_n0p5.prefill_ext.fa4_cute",
+          "old": "sglang.jit_kernel.flash_attn.cute",
+          "why": "the copied package's own import path"
+        }
+      ]
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "rewritten",
+      "path": "fa4_cute/flash_fwd_mla_sm100.py",
+      "sha256": "0d6149faa022b4d2e3af6d8d4505617834430677ee8fdfa97d25f5cef364a1bd",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/flash_fwd_mla_sm100.py",
+      "source_sha256": "5f9493d613753a168431bd4281a5fc71faa406d96db1d2a37f18e6b63f493411",
+      "substitutions": [
+        {
+          "count": 15,
+          "new": "naivert.kernels.naive_n0p5.prefill_ext.fa4_cute",
+          "old": "sglang.jit_kernel.flash_attn.cute",
+          "why": "the copied package's own import path"
+        }
+      ]
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "rewritten",
+      "path": "fa4_cute/flash_fwd_sm100.py",
+      "sha256": "aeeed717b4f831f0f229188370bfe0ea19082098f992261d98f6a541073f4a05",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/flash_fwd_sm100.py",
+      "source_sha256": "9b27db3b1d1b64bcd6e15bd47648bb3f22fe5614f79794f850c3808612efd949",
+      "substitutions": [
+        {
+          "count": 17,
+          "new": "naivert.kernels.naive_n0p5.prefill_ext.fa4_cute",
+          "old": "sglang.jit_kernel.flash_attn.cute",
+          "why": "the copied package's own import path"
+        }
+      ]
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "rewritten",
+      "path": "fa4_cute/flash_fwd_sm120.py",
+      "sha256": "7563fec5d7795f48360feae65ccdea2a502207f542b371a217b554ec7603c9a3",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/flash_fwd_sm120.py",
+      "source_sha256": "71b14fcc11b12f866ad972af792a640963a5ebcfeb3e6fa8407f5d88f22ff0cb",
+      "substitutions": [
+        {
+          "count": 1,
+          "new": "naivert.kernels.naive_n0p5.prefill_ext.fa4_cute",
+          "old": "sglang.jit_kernel.flash_attn.cute",
+          "why": "the copied package's own import path"
+        }
+      ]
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "rewritten",
+      "path": "fa4_cute/flash_fwd_sm90.py",
+      "sha256": "ab76ef22b64a4f066a05344557ae38570c14ee1bd4a394a376c93e482e3d7177",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/flash_fwd_sm90.py",
+      "source_sha256": "b2d95409848df74bd2869a5446db5accb59f54b8310987fa8e64b7567286028f",
+      "substitutions": [
+        {
+          "count": 15,
+          "new": "naivert.kernels.naive_n0p5.prefill_ext.fa4_cute",
+          "old": "sglang.jit_kernel.flash_attn.cute",
+          "why": "the copied package's own import path"
+        }
+      ]
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "rewritten",
+      "path": "fa4_cute/interface.py",
+      "sha256": "3ce899bcfc144d9c21678043f877cdb04acf189cb07fa183e451ff45cd85e8e8",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/interface.py",
+      "source_sha256": "5c7a744ad41090ea86c5be24a731cda7779189de2aa106eaa53a049e4161af65",
+      "substitutions": [
+        {
+          "count": 1,
+          "new": "from naivert.kernels.naive_n0p5.prefill_ext.fa4_cute.naivert_arch import is_arch_support_pdl\n",
+          "old": "from sglang.jit_kernel.utils import is_arch_support_pdl\n",
+          "why": "SGLang's PDL capability helper, restated in naivert_arch.py"
+        },
+        {
+          "count": 16,
+          "new": "naivert.kernels.naive_n0p5.prefill_ext.fa4_cute",
+          "old": "sglang.jit_kernel.flash_attn.cute",
+          "why": "the copied package's own import path"
+        }
+      ]
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "rewritten",
+      "path": "fa4_cute/mask.py",
+      "sha256": "be367d2712fede58d1d4ccf8ec00a6012122b7e72a235db4fc25f0443fb42341",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/mask.py",
+      "source_sha256": "86aa3b218206c4a7354f55a0a99ea287bc3935af6653658eded8b683c5e50979",
+      "substitutions": [
+        {
+          "count": 4,
+          "new": "naivert.kernels.naive_n0p5.prefill_ext.fa4_cute",
+          "old": "sglang.jit_kernel.flash_attn.cute",
+          "why": "the copied package's own import path"
+        }
+      ]
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "verbatim",
+      "path": "fa4_cute/mma_sm100_desc.py",
+      "sha256": "3f87737997bd1e589500ca8b3b8e6e56fb466760b4eb63eeaa332bbf1bd8b6f9",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/mma_sm100_desc.py",
+      "source_sha256": "3f87737997bd1e589500ca8b3b8e6e56fb466760b4eb63eeaa332bbf1bd8b6f9"
+    },
+    {
+      "license": "naivert",
+      "mode": "authored",
+      "path": "fa4_cute/naivert_arch.py",
+      "sha256": "81626f7e15601596c1fb1b2f6deb2e45edac27e56d444476cc3176880d43d5db"
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "verbatim",
+      "path": "fa4_cute/named_barrier.py",
+      "sha256": "729f4581800b31e1b6116bc44c0f9f5268b986cd7ed108d407d4bee4441ece46",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/named_barrier.py",
+      "source_sha256": "729f4581800b31e1b6116bc44c0f9f5268b986cd7ed108d407d4bee4441ece46"
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "rewritten",
+      "path": "fa4_cute/pack_gqa.py",
+      "sha256": "971777f59fbd8556eea0c262c00bd5106991adbb03992af99d6155c6b4fa1b9b",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/pack_gqa.py",
+      "source_sha256": "c5367034c87c29192a9bda5b930377cc25ec3df0be22c98d5a65489dc358dcfb",
+      "substitutions": [
+        {
+          "count": 1,
+          "new": "naivert.kernels.naive_n0p5.prefill_ext.fa4_cute",
+          "old": "sglang.jit_kernel.flash_attn.cute",
+          "why": "the copied package's own import path"
+        }
+      ]
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "rewritten",
+      "path": "fa4_cute/paged_kv.py",
+      "sha256": "cc3286746e61b2abc2edbfbc4d53e61a6dcff51d1ff67b33fd164e0fcdaf4974",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/paged_kv.py",
+      "source_sha256": "a16afacacafa4de539e203a39b8626030ae13f954c56f4cfc192bdb3b6a2f82f",
+      "substitutions": [
+        {
+          "count": 1,
+          "new": "naivert.kernels.naive_n0p5.prefill_ext.fa4_cute",
+          "old": "sglang.jit_kernel.flash_attn.cute",
+          "why": "the copied package's own import path"
+        }
+      ]
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "verbatim",
+      "path": "fa4_cute/pipeline.py",
+      "sha256": "71f7416f99bd187758e940d51094e881a0e485c96d5fad5224830c7d5fa1f846",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/pipeline.py",
+      "source_sha256": "71f7416f99bd187758e940d51094e881a0e485c96d5fad5224830c7d5fa1f846"
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "verbatim",
+      "path": "fa4_cute/seqlen_info.py",
+      "sha256": "e2444eb09131f12dddf4444e54985e60435b877012ea90e73ae4b8da6483e6d3",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/seqlen_info.py",
+      "source_sha256": "e2444eb09131f12dddf4444e54985e60435b877012ea90e73ae4b8da6483e6d3"
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "rewritten",
+      "path": "fa4_cute/shearing_bias.py",
+      "sha256": "0f45a7e92983052a86f72873a926205d87c7ec043f2f1de90cb91aed9aff2e38",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/shearing_bias.py",
+      "source_sha256": "b3cf04fa10e20a8832d58ea810dad64fe622b9ec5ce1a76081c303b0f569fa1e",
+      "substitutions": [
+        {
+          "count": 7,
+          "new": "naivert.kernels.naive_n0p5.prefill_ext.fa4_cute",
+          "old": "sglang.jit_kernel.flash_attn.cute",
+          "why": "the copied package's own import path"
+        }
+      ]
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "rewritten",
+      "path": "fa4_cute/sm100_hd256_2cta_fmha_forward.py",
+      "sha256": "a61e3fb0322034ce6cda10c7ae0da19658cc3330fea47ac7ae3a288ac69972c8",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/sm100_hd256_2cta_fmha_forward.py",
+      "source_sha256": "3b4b13d0b1e2f2151f25e708eaa37bf5959150f70bb8bcf015fedd2d419c65a1",
+      "substitutions": [
+        {
+          "count": 11,
+          "new": "naivert.kernels.naive_n0p5.prefill_ext.fa4_cute",
+          "old": "sglang.jit_kernel.flash_attn.cute",
+          "why": "the copied package's own import path"
+        }
+      ]
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "rewritten",
+      "path": "fa4_cute/softmax.py",
+      "sha256": "43c03d8f7c6758715c35414996532e990287ae51ae7d6f9bb4601eb5b5e5376c",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/softmax.py",
+      "source_sha256": "42879a6591ddef37080ae69d01cb56c4309721d062da5f4b2a09df9fe355050f",
+      "substitutions": [
+        {
+          "count": 3,
+          "new": "naivert.kernels.naive_n0p5.prefill_ext.fa4_cute",
+          "old": "sglang.jit_kernel.flash_attn.cute",
+          "why": "the copied package's own import path"
+        }
+      ]
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "verbatim",
+      "path": "fa4_cute/testing.py",
+      "sha256": "e83f8804a1198f967267cb3b081bc8cc3bd1b4e7d50a7bf04b6e2bf020956cc7",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/testing.py",
+      "source_sha256": "e83f8804a1198f967267cb3b081bc8cc3bd1b4e7d50a7bf04b6e2bf020956cc7"
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "rewritten",
+      "path": "fa4_cute/tile_scheduler.py",
+      "sha256": "202a7226dc3b4cb5419919a98bbb47b5205053c326b1b829321a1f9deffc7d73",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/tile_scheduler.py",
+      "source_sha256": "e845508f0fd972a1e8e4fff19e93c62a2ac56c0bffff9e1da6d7fee97d5fde29",
+      "substitutions": [
+        {
+          "count": 2,
+          "new": "naivert.kernels.naive_n0p5.prefill_ext.fa4_cute",
+          "old": "sglang.jit_kernel.flash_attn.cute",
+          "why": "the copied package's own import path"
+        }
+      ]
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "rewritten",
+      "path": "fa4_cute/topk_gather_kv.py",
+      "sha256": "4667ad639bcec6522eccd2c1aa1ac300ced99955a0a030f7aa97c835b0572344",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/topk_gather_kv.py",
+      "source_sha256": "e571e6d1831def620b58f29bef79d9f1c1b2e003be6c459a556d9c8ef5f62a31",
+      "substitutions": [
+        {
+          "count": 2,
+          "new": "naivert.kernels.naive_n0p5.prefill_ext.fa4_cute",
+          "old": "sglang.jit_kernel.flash_attn.cute",
+          "why": "the copied package's own import path"
+        }
+      ]
+    },
+    {
+      "license": "BSD-3-Clause (fa4_cute/LICENSE, fa4_cute/AUTHORS)",
+      "mode": "verbatim",
+      "path": "fa4_cute/utils.py",
+      "sha256": "9ca44a24082e440b13afa5c6f18fb00cfeddbf6f79d1e5cc5274eb9dc2543a78",
+      "source": "sglang/python/sglang/jit_kernel/flash_attn/cute/utils.py",
+      "source_sha256": "9ca44a24082e440b13afa5c6f18fb00cfeddbf6f79d1e5cc5274eb9dc2543a78"
+    },
+    {
+      "license": "unspecified: naive-ops-lib ships neither a license file nor license metadata",
+      "mode": "verbatim",
+      "path": "naive_ops/__init__.py",
+      "sha256": "40fa1c30bf88b42f192e9f4083b438b80f8087ea73125d8cea2a179fd32790e7",
+      "source": "ops/naive_ops_lib/__init__.py",
+      "source_sha256": "40fa1c30bf88b42f192e9f4083b438b80f8087ea73125d8cea2a179fd32790e7"
+    },
+    {
+      "license": "unspecified: naive-ops-lib ships neither a license file nor license metadata",
+      "mode": "verbatim",
+      "path": "naive_ops/_version.py",
+      "sha256": "d551d16bf559c97c746f3b95887a6c39580f44de5c1afc2e39fa8b93dcff2788",
+      "source": "ops/naive_ops_lib/_version.py",
+      "source_sha256": "d551d16bf559c97c746f3b95887a6c39580f44de5c1afc2e39fa8b93dcff2788"
+    },
+    {
+      "license": "unspecified: naive-ops-lib ships neither a license file nor license metadata",
+      "mode": "verbatim",
+      "path": "naive_ops/core/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "ops/naive_ops_lib/core/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "license": "unspecified: naive-ops-lib ships neither a license file nor license metadata",
+      "mode": "verbatim",
+      "path": "naive_ops/core/cuda_dep.py",
+      "sha256": "0e8911a10c4db6abc6d9cebdcfa4ec15149c5646cbfa0291479a8245873448a1",
+      "source": "ops/naive_ops_lib/core/cuda_dep.py",
+      "source_sha256": "0e8911a10c4db6abc6d9cebdcfa4ec15149c5646cbfa0291479a8245873448a1"
+    },
+    {
+      "license": "unspecified: naive-ops-lib ships neither a license file nor license metadata",
+      "mode": "verbatim",
+      "path": "naive_ops/core/rtc.py",
+      "sha256": "586396415424cbe7fa18d079d49150f21f54113363b481c6f931ef64badf6c12",
+      "source": "ops/naive_ops_lib/core/rtc.py",
+      "source_sha256": "586396415424cbe7fa18d079d49150f21f54113363b481c6f931ef64badf6c12"
+    },
+    {
+      "license": "naivert",
+      "mode": "authored",
+      "path": "naive_ops/dsa/__init__.py",
+      "sha256": "a29ad1136e5302c2470d2a2a9a0e040bb960e749e6188c8b09f70b50c490108f"
+    },
+    {
+      "license": "naivert",
+      "mode": "authored",
+      "path": "naive_ops/dsa/cuda/__init__.py",
+      "sha256": "94d21d3aafcd1a07d791a2f44f7616552c8382834725230ead95bf96bb9abaf7"
+    },
+    {
+      "dropped": [
+        "lines 28-28: MULTIPLE_BLOCKS_PER_ROW",
+        "lines 29-29: RADIX_BINS",
+        "lines 30-30: RADIX_STATE_INT32S",
+        "lines 327-349: _make_decode_full_row_fallback_indices",
+        "lines 352-358: _multi_pass_radix_blocks_per_row",
+        "lines 361-438: _invoke_decode_multi_pass_radix",
+        "lines 441-511: _invoke_cp_major_multi_pass_radix",
+        "lines 713-979: invoke_indexer_topk_decode",
+        "lines 982-1103: invoke_indexer_topk_cp_major"
+      ],
+      "dropped_imports": [
+        "line 2: Path",
+        "line 4: nvidia"
+      ],
+      "kept": [
+        {
+          "kind": "assignment",
+          "name": "SORTING_ALGORITHM_THRESHOLD",
+          "source_lines": [
+            12,
+            12
+          ]
+        },
+        {
+          "kind": "assignment",
+          "name": "SPLIT_WORK_THRESHOLD",
+          "source_lines": [
+            13,
+            13
+          ]
+        },
+        {
+          "kind": "assignment",
+          "name": "HEURISTIC_SEQUENCE_LENGTH_THRESHOLD",
+          "source_lines": [
+            14,
+            14
+          ]
+        },
+        {
+          "kind": "assignment",
+          "name": "INDEXER_TOPK_DECODE_IMPLS",
+          "source_lines": [
+            15,
+            22
+          ]
+        },
+        {
+          "kind": "assignment",
+          "name": "INDEXER_TOPK_PREFILL_IMPLS",
+          "source_lines": [
+            23,
+            23
+          ]
+        },
+        {
+          "kind": "assignment",
+          "name": "INDEXER_TOPK_PHASES",
+          "source_lines": [
+            24,
+            24
+          ]
+        },
+        {
+          "kind": "assignment",
+          "name": "NUM_THREADS_PER_BLOCK",
+          "source_lines": [
+            25,
+            25
+          ]
+        },
+        {
+          "kind": "assignment",
+          "name": "NUM_THREADS_PER_BLOCK_RADIX_PASS",
+          "source_lines": [
+            26,
+            26
+          ]
+        },
+        {
+          "kind": "assignment",
+          "name": "NUM_THREADS_PER_BLOCK_MERGE",
+          "source_lines": [
+            27,
+            27
+          ]
+        },
+        {
+          "kind": "assignment",
+          "name": "INT32_BYTES",
+          "source_lines": [
+            31,
+            31
+          ]
+        },
+        {
+          "kind": "class",
+          "name": "_IndexerTopKKernels",
+          "source_lines": [
+            33,
+            309
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "_check_cuda_tensor",
+          "source_lines": [
+            312,
+            316
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "_current_stream",
+          "source_lines": [
+            319,
+            320
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "_get_kernels",
+          "source_lines": [
+            323,
+            324
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "_can_use_heuristic_topk",
+          "source_lines": [
+            514,
+            548
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "_heuristic_topk_hardware_bounds",
+          "source_lines": [
+            551,
+            572
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "_effective_split_work_threshold",
+          "source_lines": [
+            575,
+            582
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "_select_indexer_topk_impl",
+          "source_lines": [
+            585,
+            645
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "invoke_indexer_topk_prefill",
+          "source_lines": [
+            648,
+            709
+          ]
+        }
+      ],
+      "license": "unspecified: naive-ops-lib ships neither a license file nor license metadata",
+      "mode": "extracted",
+      "path": "naive_ops/dsa/cuda/indexer_topk.py",
+      "roots": [
+        "invoke_indexer_topk_prefill"
+      ],
+      "sha256": "9248b182106a38a9ab2b995426e34014fb5f160f384068e6fbe7b33a1dbdfe51",
+      "source": "ops/naive_ops_lib/dsa/cuda/indexer_topk.py",
+      "source_sha256": "c8caba4d40a4785747dfde590a3a5f7bc3a5a92387ccef8aa57d12d21f7bb4f9",
+      "substitutions": [
+        {
+          "count": 1,
+          "new": "    _instances: \"dict[int, _IndexerTopKKernels]\" = {}\n",
+          "old": "    _instance: \"_IndexerTopKKernels | None\" = None\n",
+          "why": "one kernel set per CUDA device"
+        },
+        {
+          "count": 1,
+          "new": "        # naivert: cuModuleLoadData binds the NVRTC module to the current device's\n        # context, and one naivert process drives every card.\n        device = torch.cuda.current_device()\n        if device not in cls._instances:\n            cls._instances[device] = cls()\n        return cls._instances[device]\n",
+          "old": "        if cls._instance is None:\n            cls._instance = cls()\n        return cls._instance\n",
+          "why": "one kernel set per CUDA device"
+        }
+      ]
+    },
+    {
+      "dropped": [
+        "lines 11-11: REF_METADATA_KERNEL_QNAME",
+        "lines 12-12: REF_METADATA_KERNEL_QNAME_V2",
+        "lines 13-13: Q_BLOCK_METADATA_KERNEL_QNAME",
+        "lines 14-14: REF_METADATA_THREADS_PER_BLOCK",
+        "lines 15-15: Q_BLOCK_METADATA_THREADS_PER_BLOCK",
+        "lines 16-16: LOGITS_METADATA_HEADER_CODE",
+        "lines 19-174: SmxxPagedMqaLogitsMetadataKernels",
+        "lines 177-278: SmxxPagedMqaLogitsMTPMetadataKernels",
+        "lines 281-294: compile_ref_smxx_paged_mqa_logits_metadata",
+        "lines 297-309: compile_ref_smxx_paged_mqa_logits_metadata_v2",
+        "lines 312-326: compile_ref_smxx_paged_mqa_logits_q_block_metadata",
+        "lines 329-333: _check_cuda_tensor",
+        "lines 336-382: _check_context_lens",
+        "lines 385-433: _check_q_block_context_lens",
+        "lines 436-448: _validate_aligned_batch_size",
+        "lines 459-464: _infer_num_sms",
+        "lines 467-474: _get_aligned_batch_size",
+        "lines 477-486: _check_schedule_metadata",
+        "lines 489-498: _check_indices",
+        "lines 501-502: _current_stream",
+        "lines 505-506: _get_kernels",
+        "lines 509-517: _metadata_dynamic_shared_mem_bytes",
+        "lines 520-531: _check_dynamic_shared_mem_capacity",
+        "lines 534-595: _invoke_smxx_paged_mqa_logits_q_block_metadata",
+        "lines 598-694: invoke_smxx_paged_mqa_logits_metadata",
+        "lines 697-767: make_smxx_paged_mqa_logits_metadata_launcher"
+      ],
+      "dropped_imports": [
+        "line 3: Any, Optional",
+        "line 7: PACKAGE_ROOT",
+        "line 8: rtc",
+        "line 9: determine_cuda_include_and_lib"
+      ],
+      "kept": [
+        {
+          "kind": "function",
+          "name": "get_num_sms",
+          "source_lines": [
+            451,
+            456
+          ]
+        }
+      ],
+      "license": "unspecified: naive-ops-lib ships neither a license file nor license metadata",
+      "mode": "extracted",
+      "path": "naive_ops/dsa/cuda/mqa_logits.py",
+      "roots": [
+        "get_num_sms"
+      ],
+      "sha256": "22e4919e49f93fe701629af096e0bb2cbef10023f50a67bcb5ffed89c44b71b9",
+      "source": "ops/naive_ops_lib/dsa/cuda/mqa_logits.py",
+      "source_sha256": "944348518f92732774d956ff732221bfaf7529185d6c286c94e6b8d6307a09ec"
+    },
+    {
+      "license": "unspecified: naive-ops-lib ships neither a license file nor license metadata",
+      "mode": "verbatim",
+      "path": "naive_ops/dsa/gluon/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "ops/naive_ops_lib/dsa/gluon/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "license": "unspecified: naive-ops-lib ships neither a license file nor license metadata",
+      "mode": "verbatim",
+      "path": "naive_ops/dsa/gluon/logits_prefill_sm100.py",
+      "sha256": "ec01187a635b0e465157ddece5f89a294bb27f373b0f245947bb2ab0a3ca792b",
+      "source": "ops/naive_ops_lib/dsa/gluon/logits_prefill_sm100.py",
+      "source_sha256": "ec01187a635b0e465157ddece5f89a294bb27f373b0f245947bb2ab0a3ca792b"
+    },
+    {
+      "license": "unspecified: naive-ops-lib ships neither a license file nor license metadata",
+      "mode": "verbatim",
+      "path": "naive_ops/dsa/symbols.py",
+      "sha256": "63adca8af7478f83faa38bf04ada3ea61197e668d1a00965dd173be5fec4bbe9",
+      "source": "ops/naive_ops_lib/dsa/symbols.py",
+      "source_sha256": "63adca8af7478f83faa38bf04ada3ea61197e668d1a00965dd173be5fec4bbe9"
+    },
+    {
+      "license": "unspecified: naive-ops-lib ships neither a license file nor license metadata",
+      "mode": "verbatim",
+      "path": "naive_ops/dsa/triton/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "ops/naive_ops_lib/dsa/triton/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "dropped": [
+        "lines 22-22: LOGITS_DEFAULT_SPLIT_KV",
+        "lines 71-72: DSAIndexerLogitsSimpleManager",
+        "lines 84-87: DSAIndexerLogitsSimpleArgs",
+        "lines 91-97: DSAIndexerLogitsPersistArgs",
+        "lines 107-213: indexer_logits_fwd_kernel",
+        "lines 216-465: indexer_logits_fwd",
+        "lines 468-482: indexer_logits_topk_fwd_ref"
+      ],
+      "dropped_imports": [
+        "line 2: ast",
+        "line 3: dataclasses",
+        "line 4: partial",
+        "line 5: math",
+        "line 6: time",
+        "line 9: numpy",
+        "line 11: div_up",
+        "line 13: triton",
+        "line 14: traceback",
+        "line 15: language",
+        "line 18: invoke_smxx_paged_mqa_logits_metadata",
+        "line 19: check_has_tma_gather",
+        "line 21: warnings"
+      ],
+      "kept": [
+        {
+          "kind": "function",
+          "name": "_split_supported_head_dim",
+          "source_lines": [
+            25,
+            32
+          ]
+        },
+        {
+          "kind": "class",
+          "name": "DSAIndexerLogitsSimpleManagerBase",
+          "source_lines": [
+            34,
+            68
+          ]
+        },
+        {
+          "kind": "class",
+          "name": "DSAIndexerLogitsVarlenManager",
+          "source_lines": [
+            74,
+            80
+          ]
+        },
+        {
+          "kind": "class",
+          "name": "DSAIndexerLogitsPersistVarlenArgs",
+          "source_lines": [
+            99,
+            104
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "indexer_logits_prefill_fwd",
+          "source_lines": [
+            485,
+            636
+          ]
+        }
+      ],
+      "license": "unspecified: naive-ops-lib ships neither a license file nor license metadata",
+      "mode": "extracted",
+      "path": "naive_ops/dsa/triton/logits.py",
+      "roots": [
+        "indexer_logits_prefill_fwd"
+      ],
+      "sha256": "0f9e6c7bcdd92cc205ba7c49a68e9be1b9ff2f0175ff8227e47693d16f6a7226",
+      "source": "ops/naive_ops_lib/dsa/triton/logits.py",
+      "source_sha256": "a3cbfe3602c4494eabcc5e2e655e82e6c35c400c07fb55a0bd91953f79befbb1",
+      "substitutions": [
+        {
+          "count": 1,
+          "new": "        # naivert: Naive N0.5's indexer has 16 query heads over one key head.  64 and 128\n        # are upstream's layouts; the legacy 64-head path in naivert/prefill/legacy runs 64.\n        use_gluon_kernel = (GQA == 16 or GQA == 64 or GQA == 128) and use_v2_api\n",
+          "old": "        use_gluon_kernel = (GQA == 64 or GQA == 128) and use_v2_api #  and not is_paged\n",
+          "why": "GQA=16 dispatch written into naivert's copy (upstream dispatches 64 and 128 only)"
+        },
+        {
+          "count": 1,
+          "new": "                from ..gluon.logits_prefill_sm100 import indexer_logits_mqa_prefill_gluon_kernel\n",
+          "old": "                from naive_ops_lib.dsa.gluon.logits_prefill_sm100 import indexer_logits_mqa_prefill_gluon_kernel\n",
+          "why": "bind the copied SM100 kernel"
+        },
+        {
+          "count": 1,
+          "new": "                raise NotImplementedError(\"naivert copies only the SM100 indexer-logits kernel\")\n",
+          "old": "                from naive_ops_lib.dsa.gluon.logits_prefill_sm90 import indexer_logits_mqa_prefill_gluon_kernel\n",
+          "why": "SM90 kernel not copied"
+        },
+        {
+          "count": 1,
+          "new": "                raise NotImplementedError(\"naivert copies only the indexer (MQA) logits kernel\")\n",
+          "old": "                from naive_ops_lib.dsa.gluon.logits_prefill_mha_sm100 import indexer_logits_mqa_prefill_gluon_kernel\n",
+          "why": "MHA (lse) logits kernel not copied"
+        },
+        {
+          "count": 1,
+          "new": "                raise NotImplementedError(\"naivert copies only the indexer (MQA) logits kernel\")\n",
+          "old": "                from naive_ops_lib.dsa.gluon.logits_prefill_mha_sm90 import indexer_logits_mqa_prefill_gluon_kernel\n",
+          "why": "MHA (lse) logits kernel not copied"
+        }
+      ],
+      "upstream_restore": {
+        "count": 1,
+        "new": "        use_gluon_kernel = (GQA == 64 or GQA == 128) and use_v2_api #  and not is_paged\n",
+        "old": "        use_gluon_kernel = (GQA in (16, 64, 128)) and use_v2_api #  and not is_paged\n",
+        "upstream_sha256": "f36c375f77cecd34dc11d600ccce36b24a0021a52208ad38374e1f7e0f0c1e11",
+        "why": "restore upstream naive-ops-lib: the copy does not inherit the oracle's pip patch"
+      }
+    },
+    {
+      "dropped": [
+        "lines 80-85: AttentionDecodingManager",
+        "lines 97-104: AttentionDecodingArgs",
+        "lines 107-120: AttentionDecodingMergeManager",
+        "lines 123-125: AttentionDecodingMergeArgs",
+        "lines 224-283: sparse_attn_calc_topk_prob_sum_kernel",
+        "lines 286-439: sparse_attn_decoding_splitkv_tma_kernel",
+        "lines 442-515: sparse_attn_decoding_merge_kernel",
+        "lines 518-527: TopkIndicesConvertTensors",
+        "lines 531-562: sparse_attn_local_topk_to_global_kernel",
+        "lines 565-607: sparse_attn_local_topk_to_global",
+        "lines 610-620: TopkIndicesConvertPagedTensors",
+        "lines 656-691: sparse_attn_local_topk_to_global_paged_kernel",
+        "lines 693-737: sparse_attn_local_topk_to_global_paged",
+        "lines 888-1002: sparse_attn_calc_topk_prob_sum",
+        "lines 1004-1007: _default_sparse_attn_decoding_block_n",
+        "lines 1011-1016: SparseAttnDecodingTuning",
+        "lines 1019-1047: _SPARSE_ATTN_DECODING_TUNINGS_D64",
+        "lines 1048-1048: _SPARSE_ATTN_DECODING_TUNINGS_D64[11] = _SPARSE_ATTN_DECODING_TUNINGS_D64[10]",
+        "lines 1050-1078: _SPARSE_ATTN_DECODING_TUNINGS_D192",
+        "lines 1079-1079: _SPARSE_ATTN_DECODING_TUNINGS_D192[11] = _SPARSE_ATTN_DECODING_TUNINGS_D192[10]",
+        "lines 1081-1117: _SPARSE_ATTN_DECODING_TUNINGS_D192_H128",
+        "lines 1118-1118: _SPARSE_ATTN_DECODING_TUNINGS_D192_H128[11] = _SPARSE_ATTN_DECODING_TUNINGS_D192_H128[10]",
+        "lines 1120-1124: _prep_tuning_table",
+        "lines 1126-1126: _prep_tuning_table(_SPARSE_ATTN_DECODING_TUNINGS_D64)",
+        "lines 1127-1127: _prep_tuning_table(_SPARSE_ATTN_DECODING_TUNINGS_D192)",
+        "lines 1129-1180: select_sparse_attn_decoding_tuning",
+        "lines 1183-1188: _resolve_sparse_attn_decoding_block_size",
+        "lines 1191-1392: sparse_attn_decoding",
+        "lines 1394-1401: _dense_sparse_attn_mask",
+        "lines 1404-1405: sparse_attn_flatten_ref_output",
+        "lines 1408-1457: _sparse_attn_fwd_ref_non_varlen_fp32",
+        "lines 1460-1468: sparse_attn_fwd_ref_non_varlen",
+        "lines 1471-1496: sparse_attn_fwd_ref_varlen_global_kv_inds",
+        "lines 1499-1516: sparse_attn_bwd_ref_non_varlen",
+        "lines 1519-1554: sparse_attn_bwd_ref_varlen_global_kv_inds"
+      ],
+      "dropped_imports": [
+        "line 1: ast",
+        "line 2: dataclasses",
+        "line 3: partial",
+        "line 5: Any",
+        "line 7: numpy",
+        "line 11: triton",
+        "line 12: traceback",
+        "line 13: language"
+      ],
+      "kept": [
+        {
+          "kind": "assignment",
+          "name": "LOG2E",
+          "source_lines": [
+            20,
+            20
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "_convert_attn_sink_to_log2",
+          "source_lines": [
+            23,
+            26
+          ]
+        },
+        {
+          "kind": "class",
+          "name": "AttentionManagerBaseBase",
+          "source_lines": [
+            29,
+            60
+          ]
+        },
+        {
+          "kind": "class",
+          "name": "AttentionManagerBase",
+          "source_lines": [
+            62,
+            64
+          ]
+        },
+        {
+          "kind": "class",
+          "name": "AttentionManagerVarlenBase",
+          "source_lines": [
+            67,
+            73
+          ]
+        },
+        {
+          "kind": "class",
+          "name": "AttentionManager",
+          "source_lines": [
+            75,
+            77
+          ]
+        },
+        {
+          "kind": "class",
+          "name": "AttentionArgs",
+          "source_lines": [
+            87,
+            94
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "sparse_attn_fwd_varlen_tma_kernel",
+          "source_lines": [
+            127,
+            221
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "is_sparse_attn_need_i64",
+          "source_lines": [
+            623,
+            653
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "sparse_attn_fwd_varlen",
+          "source_lines": [
+            739,
+            886
+          ]
+        }
+      ],
+      "license": "unspecified: naive-ops-lib ships neither a license file nor license metadata",
+      "mode": "extracted",
+      "path": "naive_ops/dsa/triton/sparse_attn.py",
+      "roots": [
+        "sparse_attn_fwd_varlen"
+      ],
+      "sha256": "d0f295bd9b85cceee8baed0f2d28a4a57694a08f97b21446f5096c8a7d51f5fd",
+      "source": "ops/naive_ops_lib/dsa/triton/sparse_attn.py",
+      "source_sha256": "afa869f8f84375574ed0776173989af862ba6471c6173725bca71f40a457a370",
+      "substitutions": [
+        {
+          "count": 1,
+          "new": "        if use_gluon:\n            # naivert: the source fixes use_gluon = False; only the Triton kernel is copied.\n            raise NotImplementedError(\"naivert copies only the Triton sparse-attention prefill kernel\")\n        else:\n",
+          "old": "        if use_gluon:\n            from naive_ops_lib.dsa.gluon.sparse_attn_sm90_p import sparse_attn_fwd_gluon_persist_kernel\n            ker = sparse_attn_fwd_gluon_persist_kernel[grid](args=args, BLOCK_M=BLOCK_M, BLOCK_N=BLOCK_N, rec=ttfs.recorder.placeholder(4))\n\n            # from naive_ops_lib.dsa.gluon.sparse_attn_sm90 import sparse_attn_fwd_gluon_piped_kernel\n            # ker = sparse_attn_fwd_gluon_piped_kernel[grid](args=args, BLOCK_M=BLOCK_M, BLOCK_N=BLOCK_N, rec=ttfs.recorder.placeholder(1))\n\n        else:\n",
+          "why": "Gluon sparse-attention kernels not copied (unreachable: use_gluon = False)"
+        }
+      ]
+    },
+    {
+      "dropped": [
+        "lines 1113-1114: if __name__ == '__main__' block",
+        "lines 26-33: _split_supported_head_dim",
+        "lines 36-39: _fpval_to_key_host",
+        "lines 42-46: _pack_topk_init_value_host",
+        "lines 50-60: fpval_to_key",
+        "lines 64-74: key_to_fpval",
+        "lines 78-82: indx_to_key",
+        "lines 86-90: key_to_indx",
+        "lines 94-97: pack_topk_keys",
+        "lines 101-106: unpack_topk_keys",
+        "lines 110-138: DSAIndexerLogitsNoVarlenManager",
+        "lines 141-145: DSAIndexerInferManager",
+        "lines 148-150: DSAIndexerLogitsManager",
+        "lines 153-163: DSAIndexerArgs",
+        "lines 166-168: DSAIndexerDecodingArgs",
+        "lines 171-345: _indexer_logits_topk_fwd_serial_kernel_internal",
+        "lines 349-380: indexer_logits_topk_fwd_serial_kernel",
+        "lines 383-398: indexer_logits_topk_fwd_serial_novarlen_kernel",
+        "lines 401-427: indexer_logits_topk_decoding_serial_kernel",
+        "lines 430-445: indexer_logits_topk_fwd_ref",
+        "lines 447-658: indexer_logits_topk_fwd",
+        "lines 660-747: indexer_logits_topk_decode",
+        "lines 997-1023: full_qk_topk_prefill",
+        "lines 1026-1081: _run_debug_bench",
+        "lines 1083-1107: _test_indexer_logits_topk_fwd",
+        "lines 1110-1111: test_indexer_logits_topk_fwd"
+      ],
+      "dropped_imports": [
+        "line 2: ast",
+        "line 3: dataclasses",
+        "line 4: partial",
+        "line 5: math",
+        "line 6: time",
+        "line 7: Annotated, Any",
+        "line 9: numpy",
+        "line 11: div_up",
+        "line 14: traceback",
+        "line 15: language",
+        "line 16: ttfs",
+        "line 18: check_has_tma_gather",
+        "line 19: FusedTopkSymbols"
+      ],
+      "kept": [
+        {
+          "kind": "function",
+          "name": "_indexer_topk_prefill_epilogue_kernel",
+          "source_lines": [
+            749,
+            792
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "_qk_topk_prefill",
+          "source_lines": [
+            795,
+            965
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "indexer_qk_topk_prefill",
+          "source_lines": [
+            968,
+            994
+          ]
+        }
+      ],
+      "license": "unspecified: naive-ops-lib ships neither a license file nor license metadata",
+      "mode": "extracted",
+      "path": "naive_ops/dsa/triton/topk.py",
+      "roots": [
+        "indexer_qk_topk_prefill",
+        "_indexer_topk_prefill_epilogue_kernel"
+      ],
+      "sha256": "bc3ea826cc6caba627d382fcf3a7ce6b9a85a30acc11eb58f28634ab644ab310",
+      "source": "ops/naive_ops_lib/dsa/triton/topk.py",
+      "source_sha256": "cb0ccd7ff0afd602cd0e0d3080eaea5a313882c47b16bc54b7bf2fa3abb69c5c"
+    },
+    {
+      "license": "unspecified: naive-ops-lib ships neither a license file nor license metadata",
+      "mode": "verbatim",
+      "path": "naive_ops/dsa/utils.py",
+      "sha256": "93db61846c93567f067fadffce1430b1c785ce359bfccc1f84e76797db3a4584",
+      "source": "ops/naive_ops_lib/dsa/utils.py",
+      "source_sha256": "93db61846c93567f067fadffce1430b1c785ce359bfccc1f84e76797db3a4584"
+    },
+    {
+      "license": "unspecified: naive-ops-lib ships neither a license file nor license metadata",
+      "mode": "rewritten",
+      "path": "naive_ops/include/dsa/indexerTopK.h",
+      "sha256": "847188fa27f2704432242cfd5adcfd8798221eca271ec5a18dc99c7c9aae6b0a",
+      "source": "ops/naive_ops_lib/include/dsa/indexerTopK.h",
+      "source_sha256": "201589e93d980e95d61c3d761117ab01b3864e78df2fdb1499d32575451ba156",
+      "substitutions": [
+        {
+          "count": 1,
+          "new": "                // CUB radix-sort transforms 0xffffffff to its lowest key (0).\n                // This negative NaN sentinel sorts below valid -inf; -FLT_MAX\n                // does not, and could promote padding with uninitialized IDs.\n                finalLogits[ii] = __int_as_float(-1);\n",
+          "old": "                constexpr float _negativeMaxFloat = negativeMaxFloat();\n                finalLogits[ii] = _negativeMaxFloat;\n",
+          "why": "CUB final-sort padding must rank below valid negative infinity"
+        }
+      ]
+    }
+  ],
+  "generator": {
+    "path": "tools/vendor_prefill_ext.py",
+    "sha256": "369664853261c9f61bb61920d8ee1e322f1b3bf24f60604cbf8d09d959513daa"
+  },
+  "package": "naivert.kernels.naive_n0p5.prefill_ext",
+  "reference": {
+    "naive_ops": {
+      "distribution": "naive-ops-lib",
+      "original_sha256": "f36c375f77cecd34dc11d600ccce36b24a0021a52208ad38374e1f7e0f0c1e11",
+      "patched_file": "naive_ops_lib/dsa/triton/logits.py",
+      "patched_sha256": "a3cbfe3602c4494eabcc5e2e655e82e6c35c400c07fb55a0bd91953f79befbb1",
+      "version": "0.1.1.dev78+g4b8777415.d20260728"
+    },
+    "oracle_manifest": {
+      "path": "tests/oracles/sglang_prefill/manifest.json",
+      "sha256": "fe4dec19eb870cfa5dcd28f70c2383a3ce36b149d6f8e57c8d6579e2b9dfee9f"
+    },
+    "sglang_revision": "eb078d76c5821afc50b4ac47da4704edfe811486"
+  },
+  "schema_version": 1,
+  "third_party_import_roots": {
+    "cuda": [
+      "fa4_cute/cu_blocks_kernels.py",
+      "fa4_cute/cute_dsl_ptxas.py",
+      "fa4_cute/cute_dsl_utils.py",
+      "fa4_cute/flash_fwd.py",
+      "fa4_cute/flash_fwd_combine.py",
+      "fa4_cute/flash_fwd_mla_sm100.py",
+      "fa4_cute/flash_fwd_sm100.py",
+      "fa4_cute/flash_fwd_sm90.py",
+      "fa4_cute/shearing_bias.py",
+      "fa4_cute/sm100_hd256_2cta_fmha_forward.py"
+    ],
+    "cutlass": [
+      "fa4_cute/ampere_helpers.py",
+      "fa4_cute/blackwell_helpers.py",
+      "fa4_cute/block_info.py",
+      "fa4_cute/block_sparse_utils.py",
+      "fa4_cute/block_sparsity.py",
+      "fa4_cute/cache_utils.py",
+      "fa4_cute/copy_utils.py",
+      "fa4_cute/cu_blocks_kernels.py",
+      "fa4_cute/cute_dsl_ptxas.py",
+      "fa4_cute/cute_dsl_utils.py",
+      "fa4_cute/fa_logging.py",
+      "fa4_cute/fast_math.py",
+      "fa4_cute/flash_fwd.py",
+      "fa4_cute/flash_fwd_combine.py",
+      "fa4_cute/flash_fwd_mla_sm100.py",
+      "fa4_cute/flash_fwd_sm100.py",
+      "fa4_cute/flash_fwd_sm120.py",
+      "fa4_cute/flash_fwd_sm90.py",
+      "fa4_cute/interface.py",
+      "fa4_cute/mask.py",
+      "fa4_cute/mma_sm100_desc.py",
+      "fa4_cute/pack_gqa.py",
+      "fa4_cute/paged_kv.py",
+      "fa4_cute/pipeline.py",
+      "fa4_cute/seqlen_info.py",
+      "fa4_cute/shearing_bias.py",
+      "fa4_cute/sm100_hd256_2cta_fmha_forward.py",
+      "fa4_cute/softmax.py",
+      "fa4_cute/tile_scheduler.py",
+      "fa4_cute/topk_gather_kv.py",
+      "fa4_cute/utils.py"
+    ],
+    "einops": [
+      "fa4_cute/testing.py"
+    ],
+    "quack": [
+      "fa4_cute/block_sparse_utils.py",
+      "fa4_cute/flash_fwd.py",
+      "fa4_cute/flash_fwd_mla_sm100.py",
+      "fa4_cute/flash_fwd_sm100.py",
+      "fa4_cute/flash_fwd_sm90.py",
+      "fa4_cute/interface.py",
+      "fa4_cute/mask.py",
+      "fa4_cute/pack_gqa.py",
+      "fa4_cute/paged_kv.py",
+      "fa4_cute/seqlen_info.py",
+      "fa4_cute/softmax.py",
+      "fa4_cute/tile_scheduler.py",
+      "fa4_cute/topk_gather_kv.py",
+      "fa4_cute/utils.py"
+    ],
+    "torch": [
+      "fa4_cute/block_sparsity.py",
+      "fa4_cute/cute_dsl_utils.py",
+      "fa4_cute/flash_fwd_mla_sm100.py",
+      "fa4_cute/interface.py",
+      "fa4_cute/naivert_arch.py",
+      "fa4_cute/testing.py",
+      "fa4_cute/utils.py",
+      "naive_ops/core/rtc.py",
+      "naive_ops/dsa/cuda/indexer_topk.py",
+      "naive_ops/dsa/cuda/mqa_logits.py",
+      "naive_ops/dsa/triton/logits.py",
+      "naive_ops/dsa/triton/sparse_attn.py",
+      "naive_ops/dsa/triton/topk.py",
+      "naive_ops/dsa/utils.py"
+    ],
+    "triton": [
+      "fa4_cute/cute_dsl_utils.py",
+      "naive_ops/dsa/gluon/logits_prefill_sm100.py",
+      "naive_ops/dsa/triton/logits.py",
+      "naive_ops/dsa/triton/sparse_attn.py",
+      "naive_ops/dsa/triton/topk.py"
+    ],
+    "ttfs": [
+      "naive_ops/dsa/gluon/logits_prefill_sm100.py",
+      "naive_ops/dsa/symbols.py",
+      "naive_ops/dsa/triton/logits.py",
+      "naive_ops/dsa/triton/sparse_attn.py"
+    ],
+    "tvm_ffi": [
+      "fa4_cute/cache_utils.py"
+    ],
+    "typing_extensions": [
+      "fa4_cute/tile_scheduler.py"
+    ]
+  }
+}

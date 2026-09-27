@@ -1,0 +1,2 @@
+# Studio is deployed independently; keep it out of runtime images.
+apps/studio/

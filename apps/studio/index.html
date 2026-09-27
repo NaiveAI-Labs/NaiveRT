@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>NaiveRT · Studio</title>
+  <link rel="icon" type="image/png" href="./logo.png">
+  <link rel="stylesheet" href="./studio.css">
+  <script type="module" src="./studio.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="NaiveRT Studio home"><img class="brand-mark" src="./logo.png" width="38" height="38" alt=""><strong>NaiveRT</strong><span class="brand-divider">/</span><span>Studio</span></a>
+    <div class="topbar-actions"><span id="connection" role="status">Connecting…</span><button id="new-chat" class="quiet" type="button">New chat <span aria-hidden="true">＋</span></button></div>
+  </header>
+
+  <main>
+    <div class="connection-toolbar">
+      <details id="endpoint-settings" class="endpoint-settings">
+        <summary>API connection <span id="endpoint-current">Not configured</span></summary>
+        <div class="connection-info">
+          <span id="connection-result" role="status" aria-live="polite">Not checked</span>
+          <small>Check connection sends a one-token streaming test. Does not add to your chat.</small>
+        </div>
+        <form id="quick-setup-form" autocomplete="off">
+          <label for="quick-setup">Quick setup · paste one line</label>
+          <div class="endpoint-row"><input id="quick-setup" type="password" autocomplete="off" spellcheck="false" placeholder="https://api.example.com sk-… naive-n0.5" aria-describedby="quick-setup-help"><button id="quick-connect" class="quiet" type="submit">Apply &amp; check</button></div>
+          <p id="quick-setup-help">Format: URL API_KEY [MODEL]. The key uses bearer authentication; omit it for public APIs. The pasted line is cleared after applying.</p>
+        </form>
+        <form id="endpoint-form">
+          <label for="endpoint-url">API endpoint URL</label>
+          <div class="endpoint-row"><input id="endpoint-url" type="url" placeholder="https://api.example.com" autocomplete="off" spellcheck="false" aria-describedby="endpoint-help"><button id="endpoint-connect" class="quiet" type="submit">Use endpoint</button></div>
+          <label for="endpoint-model">Model</label><input id="endpoint-model" type="text" value="naive-n0.5" required autocomplete="off" spellcheck="false">
+          <div class="auth-fields">
+            <label for="auth-type">Authentication</label>
+            <select id="auth-type"><option value="none">None</option><option value="bearer">Bearer token</option><option value="api-key">API key (x-api-key)</option><option value="basic">HTTP Basic</option></select>
+            <label id="auth-user-field" hidden>Username<input id="auth-username" type="text" autocomplete="off" spellcheck="false"></label>
+            <label id="auth-secret-field" hidden><span id="auth-secret-label">Token</span><input id="auth-secret" type="password" autocomplete="off" spellcheck="false"></label>
+            <label class="auth-cookie"><input id="auth-cookies" type="checkbox"> Include endpoint cookies</label>
+            <button id="auth-clear" class="quiet" type="button">Clear credentials</button>
+            <p>Credentials are remembered in this browser by default, including after reload. Clear credentials or edit the endpoint URL to remove them. They go directly to the selected API, never to Vercel. Apply changes with Use endpoint.</p>
+          </div>
+          <p id="endpoint-help">Use a server origin or complete /v1/messages URL. Settings are saved in this browser. Changing endpoint or model starts a new chat.</p>
+          <p id="endpoint-error" role="status" hidden></p>
+        </form>
+      </details>
+      <div class="connection-health">
+        <button id="check-connection" class="quiet" type="button" title="Send a one-token streaming test" disabled>Check connection</button>
+      </div>
+      <div id="queue-status" class="queue-status" tabindex="0" role="status" aria-live="polite" aria-atomic="true" title="Server-wide waiting requests, excluding the running request; refreshed every 2 seconds.">
+        <span>Queued <strong id="queue-count">—</strong></span><span id="queue-detail" class="sr-only">Configure an endpoint to see its queue</span>
+      </div>
+    </div>
+    <section id="welcome" class="welcome" aria-labelledby="welcome-title">
+      <div class="intro-tag"><span class="tiny-spark" aria-hidden="true">✳</span> IDEAS AT INFERENCE SPEED</div>
+      <h1 id="welcome-title">A thought.<br>A little <span>something real.</span></h1>
+      <p>Describe a poster, a tiny app, or an idea worth exploring.<br>Watch it take shape, then try it right here.</p>
+      <div class="examples" aria-label="Example prompts">
+        <button type="button" data-example="tetris"><span class="example-art tetris-art" aria-hidden="true"><span class="tetris-piece"><i></i><i></i><i></i><i></i></span><span class="tetris-floor">▧ ▧ ▧ ▧ ▧</span></span><span class="example-label"><strong>Write a tetris</strong><span>Playable HTML · Seed 4 <b>↗</b></span></span></button>
+        <button type="button" data-example="poster"><span class="example-art poster-art" aria-hidden="true"><span>FRESH<br>IDEAS.</span><i>✳</i></span><span class="example-label"><strong>Make a poster</strong><span>Illustration in pure SVG <b>↗</b></span></span></button>
+        <button type="button" data-example="app"><span class="example-art app-art" aria-hidden="true"><span class="mini-title">FOCUS TIME</span><span class="mini-clock">25:00</span><span class="mini-button">Let's begin</span></span><span class="example-label"><strong>Build a tiny app</strong><span>HTML that actually runs <b>↗</b></span></span></button>
+        <button type="button" data-example="explain"><span class="example-art orbit-art" aria-hidden="true"><i></i><i></i><i></i><span>●</span></span><span class="example-label"><strong>Make it click</strong><span>An interactive explanation <b>↗</b></span></span></button>
+      </div>
+      <button id="pelican-preset" class="benchmark-prompt" type="button">Try the pelican benchmark ↗</button>
+      <button id="pelican-thinking-preset" class="benchmark-prompt" type="button">Pelican with thinking ↗</button>
+    </section>
+
+    <section id="conversation" aria-label="Conversation"></section>
+    <div id="notice" role="status" hidden></div>
+
+    <div class="bottom-area">
+      <div id="performance-panel" class="performance-panel" hidden>
+        <section id="rate-panel" class="rate-panel" aria-label="Streamed generation speed curve" hidden>
+          <div class="curve-heading"><span><strong>Streamed tok/s</strong><span class="curve-key thinking-key">Thinking</span><span class="curve-key output-key">Output</span></span></div>
+          <svg id="rate-chart" viewBox="0 0 960 188" role="img" aria-label="Streamed generation speed" hidden>
+            <g class="curve-grid"><path id="curve-grid" d="M46 28H930 M46 91H930 M46 154H930"/></g>
+            <g class="curve-labels"><text id="curve-top" x="37" y="32" text-anchor="end"></text><text id="curve-mid" x="37" y="95" text-anchor="end"></text><text id="curve-zero" x="37" y="158" text-anchor="end">0</text><text id="curve-start" x="46" y="178">0 s</text><text id="curve-end" x="930" y="178" text-anchor="end"></text></g>
+            <path id="curve-thinking" class="curve-line thinking-line"/><path id="curve-output" class="curve-line output-line"/>
+            <circle id="curve-thinking-dot" r="3" fill="#8d9484" hidden/><circle id="curve-output-dot" r="3" fill="#ec704c" hidden/>
+          </svg>
+          <p id="curve-empty" class="curve-empty">Waiting for generation…</p>
+        </section>
+        <section id="metrics" class="metrics" aria-label="Latest request metrics" hidden>
+          <div class="metric peak-metric" title="Highest sampled rate on the curve"><span>Peak streamed TPS</span><strong id="peak-tps">—</strong></div>
+          <div class="metric"><span>Thinking <small>device TPS</small></span><strong id="thinking-tps">—</strong></div>
+          <div class="metric output-metric"><span>Output <small>device TPS</small></span><strong id="answer-tps">—</strong></div>
+          <div class="metric"><span>Generated tokens</span><strong id="token-count">—</strong></div>
+          <div class="metric"><span id="ttft-label">TTFT <small>incl. queue</small></span><strong id="ttft">—</strong></div>
+          <div class="metric" title="Time waiting for this runtime’s worker; gateway queueing is not included"><span>Queue wait</span><strong id="queue-wait">—</strong></div>
+        </section>
+      </div>
+      <details id="request-details" class="request-details" hidden>
+        <summary>Measurement details <span id="details-summary"></span></summary>
+        <div class="segment-details">
+          <div><strong>Thinking</strong><span id="thinking-detail">Available after completion</span><span id="thinking-stream"></span></div>
+          <div><strong>Output</strong><span id="answer-detail">Available after completion</span><span id="answer-stream"></span></div>
+          <div><strong>Request</strong><span id="elapsed">Elapsed 0.0 s</span><span id="phase">Ready</span></div>
+        </div>
+        <p>Queue wait is reported by the runtime. TTFT after queue subtracts that wait from the browser’s total time to first content; network and gateway delays remain included. Older servers show total TTFT and an unknown queue wait.</p>
+        <p>Curve: received tok/s over a rolling ~1 s window, sampled every 200 ms. Peak is the highest sampled rate. Prefill and finalization are excluded.</p>
+        <p>Device TPS uses server execution intervals. Streamed TPS = generated tokens received after the first content batch ÷ time from first to last content batch. Both exclude prefill and finalization; TTFT and total elapsed are separate. Streamed TPS requires server token-progress metadata; text length and event counts are never used as token counts.</p>
+        <dl id="detail-values"></dl><details><summary>Raw measurement</summary><pre id="measurement-json"></pre></details>
+      </details>
+
+      <form id="composer" class="composer">
+        <label class="sr-only" for="prompt">Message</label>
+        <textarea id="prompt" rows="1" placeholder="What would you like to make?" required></textarea>
+        <div class="seed-bar"><label class="seed-label">Seed <input id="seed" type="number" min="0" max="9007199254740991" step="1" value="4" required></label><button id="lucky-draw" type="button" disabled title="Start a new chat with a new seed. Use the draft prompt, or rerun the last prompt when the composer is empty. Previous messages are cleared.">⚄ Lucky draw</button><span id="seed-hint">Fresh chat · new seed</span></div>
+        <div class="composer-bar">
+          <div class="composer-options"><label class="thinking-toggle"><input id="thinking" type="checkbox" checked><span aria-hidden="true">✳</span> Thinking</label><span class="option-divider"></span><label class="limit-label" for="max-tokens">Max tokens <input id="max-tokens" type="number" value="524288" min="1" step="1" aria-describedby="token-limit"></label></div>
+          <div class="send-actions"><span class="key-hint">Shift + Enter for a new line</span><button id="stop" class="stop" type="button" hidden>Stop <span aria-hidden="true">■</span></button><button id="send" class="send" type="submit" aria-label="Send message" disabled>↑</button></div>
+        </div>
+      </form>
+      <details class="request-settings"><summary>Request settings</summary><div class="settings-fields"><label>Thinking budget hint <input id="thinking-budget" type="number" min="1024" step="1" value="1024"></label><label><input id="artifact-guidance" type="checkbox" checked> Add artifact-formatting instructions</label></div><p>Disable formatting instructions to send your prompt without an added system message. The budget hint is ignored when thinking is off. Sampling otherwise uses server defaults.</p></details>
+      <footer><span id="model-name">Connecting to the model…</span><span id="token-limit"></span><span>History stays in this tab.</span></footer>
+    </div>
+  </main>
+  <div id="toast" role="status" hidden></div>
+</body>
+</html>

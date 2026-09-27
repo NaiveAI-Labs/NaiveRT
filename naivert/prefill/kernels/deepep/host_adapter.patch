@@ -1,0 +1,211 @@
+--- a/csrc/deep_ep.cpp
++++ b/csrc/deep_ep.cpp
+@@ -1,4 +1,5 @@
+ #include <ATen/cuda/CUDAContext.h>
++#include <c10/cuda/CUDAGuard.h>
+ #include <ATen/cuda/CUDADataType.h>
+ #include <chrono>
+ #include <cuda_runtime.h>
+@@ -140,19 +141,57 @@
+     return comm_stream;
+ }
+ 
+-void Buffer::destroy() {
++
++void Buffer::sync_local(const std::vector<Buffer*>& peers) {
++    c10::cuda::CUDAGuard guard(device_id);
++    EP_HOST_ASSERT(not available and not destroyed);
++    EP_HOST_ASSERT(num_rdma_bytes == 0 and not low_latency_mode);
++    EP_HOST_ASSERT(num_ranks <= NUM_MAX_NVL_PEERS and num_nvl_bytes > 0);
++    EP_HOST_ASSERT(peers.size() == num_ranks and peers[rank] == this);
++    for (int i = 0; i < num_ranks; ++i) {
++        auto* peer = peers[i];
++        EP_HOST_ASSERT(peer != nullptr and not peer->destroyed);
++        EP_HOST_ASSERT(peer->rank == i and peer->num_ranks == num_ranks);
++        EP_HOST_ASSERT(peer->num_nvl_bytes == num_nvl_bytes);
++        EP_HOST_ASSERT(peer->num_rdma_bytes == 0 and not peer->low_latency_mode);
++        if (i != rank) {
++            EP_HOST_ASSERT(peer->device_id != device_id);
++            int can_access = 0;
++            CUDA_CHECK(cudaDeviceCanAccessPeer(&can_access, device_id, peer->device_id));
++            EP_HOST_ASSERT(can_access);
++            auto status = cudaDeviceEnablePeerAccess(peer->device_id, 0);
++            if (status == cudaErrorPeerAccessAlreadyEnabled)
++                (void)cudaGetLastError();
++            else
++                CUDA_CHECK(status);
++        }
++        buffer_ptrs[i] = peer->buffer_ptrs[i];
++        barrier_signal_ptrs[i] = reinterpret_cast<int*>(
++            static_cast<uint8_t*>(buffer_ptrs[i]) + num_nvl_bytes);
++    }
++    CUDA_CHECK(cudaMemcpy(buffer_ptrs_gpu, buffer_ptrs, sizeof(buffer_ptrs), cudaMemcpyHostToDevice));
++    CUDA_CHECK(cudaMemcpy(barrier_signal_ptrs_gpu, barrier_signal_ptrs,
++                          sizeof(barrier_signal_ptrs), cudaMemcpyHostToDevice));
++    CUDA_CHECK(cudaDeviceSynchronize());
++    local_peers = true;
++    available = true;
++}
++
++void Buffer::destroy(bool all_ranks_drained) {
++    c10::cuda::CUDAGuard guard(device_id);
+     EP_HOST_ASSERT(not destroyed);
+ 
+     // Synchronize
+     CUDA_CHECK(cudaDeviceSynchronize());
+ 
+     if (num_nvl_bytes > 0) {
+-        // Barrier
+-        intranode::barrier(barrier_signal_ptrs_gpu, nvl_rank, num_nvl_ranks, comm_stream);
++        // Local owners may already have drained every peer.
++        if (not all_ranks_drained)
++            intranode::barrier(barrier_signal_ptrs_gpu, nvl_rank, num_nvl_ranks, comm_stream);
+         CUDA_CHECK(cudaDeviceSynchronize());
+ 
+-        // Close remote IPC
+-        if (is_available()) {
++        // Close remote IPC; local peers are borrowed CUDA allocations.
++        if (is_available() and not local_peers) {
+             for (int i = 0; i < num_nvl_ranks; ++ i) if (i != nvl_rank)
+                 CUDA_CHECK(cudaIpcCloseMemHandle(buffer_ptrs[i]));
+         }
+@@ -177,6 +216,9 @@
+ 
+     // Free chunked mode staffs
+     CUDA_CHECK(cudaFreeHost(const_cast<int*>(moe_recv_expert_counter)));
++
++    if (moe_recv_rdma_counter != nullptr)
++        CUDA_CHECK(cudaFreeHost(const_cast<int*>(moe_recv_rdma_counter)));
+ 
+     destroyed = true;
+     available = false;
+@@ -1342,7 +1384,7 @@
+ PYBIND11_MODULE(TORCH_EXTENSION_NAME, m) {
+     m.doc() = "DeepEP: an efficient expert-parallel communication library";
+ 
+-    pybind11::class_<deep_ep::Config>(m, "Config")
++    pybind11::class_<deep_ep::Config>(m, "Config", pybind11::module_local())
+         .def(pybind11::init<int, int, int, int, int>(),
+              py::arg("num_sms") = 20,
+              py::arg("num_max_nvl_chunked_send_tokens") = 6, py::arg("num_max_nvl_chunked_recv_tokens") = 256,
+@@ -1351,11 +1393,11 @@
+         .def("get_rdma_buffer_size_hint", &deep_ep::Config::get_rdma_buffer_size_hint);
+     m.def("get_low_latency_rdma_size_hint", &deep_ep::get_low_latency_rdma_size_hint);
+ 
+-    pybind11::class_<deep_ep::EventHandle>(m, "EventHandle")
++    pybind11::class_<deep_ep::EventHandle>(m, "EventHandle", pybind11::module_local())
+         .def(pybind11::init<>())
+         .def("current_stream_wait", &deep_ep::EventHandle::current_stream_wait);
+ 
+-    pybind11::class_<deep_ep::Buffer>(m, "Buffer")
++    pybind11::class_<deep_ep::Buffer>(m, "Buffer", pybind11::module_local())
+         .def(pybind11::init<int, int, int64_t, int64_t, bool, bool>())
+         .def("is_available", &deep_ep::Buffer::is_available)
+         .def("get_num_rdma_ranks", &deep_ep::Buffer::get_num_rdma_ranks)
+@@ -1367,9 +1409,10 @@
+         .def("get_local_buffer_tensor", &deep_ep::Buffer::get_local_buffer_tensor)
+         .def("get_comm_stream", &deep_ep::Buffer::get_comm_stream)
+         .def("sync", &deep_ep::Buffer::sync)
+-        .def("destroy", &deep_ep::Buffer::destroy)
++        .def("sync_local", &deep_ep::Buffer::sync_local)
++        .def("destroy", &deep_ep::Buffer::destroy, py::arg("all_ranks_drained") = false, pybind11::call_guard<pybind11::gil_scoped_release>())
+         .def("get_dispatch_layout", &deep_ep::Buffer::get_dispatch_layout)
+-        .def("intranode_dispatch", &deep_ep::Buffer::intranode_dispatch)
++        .def("intranode_dispatch", &deep_ep::Buffer::intranode_dispatch, pybind11::call_guard<pybind11::gil_scoped_release>())
+         .def("intranode_combine", &deep_ep::Buffer::intranode_combine)
+         .def("internode_dispatch", &deep_ep::Buffer::internode_dispatch)
+         .def("internode_combine", &deep_ep::Buffer::internode_combine)
+--- a/csrc/deep_ep.hpp
++++ b/csrc/deep_ep.hpp
+@@ -51,6 +51,7 @@
+ 
+     // After IPC/NVSHMEM synchronization, this flag will be true
+     bool available = false;
++    bool local_peers = false;
+ 
+     // Whether explicit `destroy()` is required.
+     bool explicitly_destroy;
+@@ -103,7 +104,9 @@
+ 
+     void sync(const std::vector<int>& device_ids, const std::vector<std::optional<pybind11::bytearray>>& all_gathered_handles, const std::optional<pybind11::bytearray>& root_unique_id_opt);
+ 
+-    void destroy();
++    void sync_local(const std::vector<Buffer*>& peers);
++
++    void destroy(bool all_ranks_drained = false);
+ 
+     std::tuple<torch::Tensor, std::optional<torch::Tensor>, torch::Tensor, torch::Tensor, std::optional<EventHandle>>
+     get_dispatch_layout(const torch::Tensor& topk_idx, int num_experts, std::optional<EventHandle>& previous_event,
+--- a/setup.py
++++ b/setup.py
+@@ -16,29 +16,15 @@
+ 
+ 
+ if __name__ == '__main__':
+-    disable_nvshmem = False
+-    nvshmem_dir = os.getenv('NVSHMEM_DIR', None)
+-    nvshmem_host_lib = 'libnvshmem_host.so'
+-    if nvshmem_dir is None:
+-        try:
+-            nvshmem_dir = importlib.util.find_spec("nvidia.nvshmem").submodule_search_locations[0]
+-            nvshmem_host_lib = get_nvshmem_host_lib_name(nvshmem_dir)
+-            import nvidia.nvshmem as nvshmem
+-        except (ModuleNotFoundError, AttributeError, IndexError):
+-            print('Warning: `NVSHMEM_DIR` is not specified, and the NVSHMEM module is not installed. All internode and low-latency features are disabled\n')
+-            disable_nvshmem = True
+-    else:
+-        disable_nvshmem = False
+-
+-    if not disable_nvshmem:
+-        assert os.path.exists(nvshmem_dir), f'The specified NVSHMEM directory does not exist: {nvshmem_dir}'
++    disable_nvshmem = True
++    nvshmem_dir = None
+ 
+     cxx_flags = ['-O3', '-Wno-deprecated-declarations', '-Wno-unused-variable',
+                  '-Wno-sign-compare', '-Wno-reorder', '-Wno-attributes']
+     nvcc_flags = ['-O3', '-Xcompiler', '-O3']
+     sources = ['csrc/deep_ep.cpp', 'csrc/kernels/runtime.cu', 'csrc/kernels/layout.cu', 'csrc/kernels/intranode.cu']
+     include_dirs = ['csrc/']
+-    include_dirs.append('/usr/local/cuda/include/cccl')
++    include_dirs.append(str(Path(os.environ['CUDA_HOME']) / 'include/cccl'))
+     library_dirs = []
+     nvcc_dlink = []
+     extra_link_args = []
+@@ -81,6 +67,10 @@
+         cxx_flags.append('-DDISABLE_AGGRESSIVE_PTX_INSTRS')
+         nvcc_flags.append('-DDISABLE_AGGRESSIVE_PTX_INSTRS')
+ 
++    root = Path(__file__).resolve().parent
++    sources = [str(root / path) for path in sources]
++    include_dirs = [str(root / path) for path in include_dirs]
++
+     # Put them together
+     extra_compile_args = {
+         'cxx': cxx_flags,
+@@ -100,22 +90,18 @@
+     print(f' > NVSHMEM path: {nvshmem_dir}')
+     print()
+ 
+-    # noinspection PyBroadException
+-    try:
+-        cmd = ['git', 'rev-parse', '--short', 'HEAD']
+-        revision = '+' + subprocess.check_output(cmd).decode('ascii').rstrip()
+-    except Exception as _:
+-        revision = ''
++    revision = ''
+ 
+     setuptools.setup(
+-        name='deep_ep',
++        name='naivert-prefill-deepep',
+         version='1.2.1' + revision,
+         packages=setuptools.find_packages(
+             include=['deep_ep']
+         ),
+         ext_modules=[
+             CUDAExtension(
+-                name='deep_ep_cpp',
++                name='naivert_deep_ep_cpp',
++                dlink=True,
+                 include_dirs=include_dirs,
+                 library_dirs=library_dirs,
+                 sources=sources,

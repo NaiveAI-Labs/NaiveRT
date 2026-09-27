@@ -1,0 +1,31 @@
+{
+  "request": {
+    "model": "naive-n0.5",
+    "max_tokens": 131072,
+    "seed": 42,
+    "thinking": {"type": "disabled", "budget_tokens": 16384},
+    "added_system": false,
+    "message_count": 1
+  },
+  "usage": {"input_tokens": 58, "cache_read_input_tokens": 0, "cache_creation_input_tokens": 58, "output_tokens": 4872},
+  "backend": {
+    "predicted_ms": 2868.61022002995,
+    "predicted_per_second": 1698.3834074010701,
+    "decode_tok_s_device": 1697.12282882606,
+    "answer": {"tokens": 4871, "rounds": 831, "device_ms": 2865.437856, "device_tok_s": 1699.9147232596624}
+  },
+  "browser": {
+    "render_count": 33,
+    "render_ms": 46.400001525878906,
+    "max_render_ms": 3,
+    "max_render_delay_ms": 98.30000019073486,
+    "first_content_ms": 195.30000019073486,
+    "last_content_ms": 3031.699999809265,
+    "final_event_ms": 3477.3999996185303,
+    "elapsed_ms": 3477.699999809265,
+    "final_dom_ms": 3478.800000190735,
+    "response_chars": 8902,
+    "response_sha256": "46573aa762a62df87d913d38c5697e6b768dcbddc94108e23e085f6cd369d01e"
+  },
+  "displayed": {"thinking_tps": "—", "output_tps": "1,700"}
+}
